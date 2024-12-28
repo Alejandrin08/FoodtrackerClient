@@ -1,0 +1,76 @@
+.signupContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin-top: 40px;
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 50%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.inputSignUp {
+  width: 80%;
+  height: 40px;
+  margin: 10px 0;
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.slider {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 5vh;
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: var(--primarybackground);
+  border-radius: 15px;
+  box-shadow: var(--borbordercolor) 0px 0px 10px;
+  backdrop-filter: blur(15px);
+}
+
+.sliderCircleActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primaryitemcolor);
+  border-radius: 50%;
+  box-shadow:  var(--primaryitemcolor) 0px 0px 5px;
+  backdrop-filter: blur(15px);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sliderCircleInactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primarybackground);
+  border-radius: 50%;
+  box-shadow:  var(--primaryitemcolor) 0px 0px 2px;
+  color: var(--primaryitemcolor);
+  font-size: 16px;
+  font-weight: bold;
+}
+

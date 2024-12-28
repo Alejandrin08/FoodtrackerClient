@@ -1,0 +1,129 @@
+.navbar {
+  background-color: var(--primarybackground);
+  padding: 10px 5rem;
+}
+
+.btn_navbar_secundary {
+  background-color: var(--secondarybackground);
+  color: var(--secondaryitemcolor);
+}
+
+.userMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.userMenu p {
+  margin-top: 15px;
+  margin-right: 10px;
+  color: var(--dark);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  background-color: var(--primaryitemcolor);
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdownContent .dropdownItem {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border: none; 
+  background-color: var(--secondarybackground); 
+}
+
+.dropdownContent .dropdownItem:hover {
+  background-color: var(--secondaryitemcolor);
+  color: var(--light);
+  text-decoration: none;
+}
+
+.dropdownContent .dropdownItem:focus {
+  outline: none;  
+  background-color:  var(--secondarybackground); 
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+  text-decoration: none;
+}
+
+.navbar_brand {
+  cursor: pointer;
+}
+
+.navbar .toggle {
+  border: none;
+}
+
+.navbar .toggle:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.navbar .nav__linkgroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .nav__link {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark);
+  transition: 0.3s;
+}
+
+.navbar .nav__link:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+.navbar .nav__link .active {
+  color: var(--primaryitemcolor) !important;
+  text-decoration: none;
+}
+
+.navbar .nav__link .activiveSecundary {
+  color: var(--secondaryitemcolor) !important;
+  text-decoration: none;
+}
+
+.navbar .lastnav__link {
+  color: var(--primaryitemcolor);
+}
+
+.navbar .nav__link:hover {
+  color: var(--primaryitemcolor);
+}
+
+@media only screen and (max-width: 1200px) {
+  .navbar {
+    padding: 7px 1rem;
+  }
+
+  .navbar .nav__linkgroup {
+    position: relative;
+    display: block;
+  }
+}
