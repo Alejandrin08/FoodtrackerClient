@@ -44,6 +44,7 @@ const TheNavbar = (props) => {
     localStorage.removeItem("authToken");
     setUserName(null);
     setIsLoggedIn(false);
+    navigate("/");  
   };
 
   return (
@@ -121,12 +122,12 @@ const TheNavbar = (props) => {
                     </button>
                   </div>
                 </div>
+
+                <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
+                  <NavCartButton onClick={props.onShowCart} />
+                </Nav.Link>
               </div>
             )}
-
-            <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
-              <NavCartButton onClick={props.onShowCart} />
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
