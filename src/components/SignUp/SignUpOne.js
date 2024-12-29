@@ -34,7 +34,7 @@ const SignUpOne = () => {
 
     return (
         <Container className={styles.signupContainer}>
-            <h1 className="mb-4">Registrarse</h1>
+            <h1 className="mb-4 mt-5">Registrarse</h1>
 
             <div className={styles.slider}>
                 <div className={styles.sliderCircleActive}>1</div>

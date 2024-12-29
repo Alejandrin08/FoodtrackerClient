@@ -19,10 +19,12 @@ const TheButton = (props) => {
       className={`${classes.button} ${props.className}`}
       type={props.type}
       onClick={handleClick}  
+      disabled={props.disabled} 
     >
       {props.children}
     </button>
   );
 };
+
 
 export default TheButton;
