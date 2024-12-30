@@ -53,7 +53,7 @@
   height: 50px;
   background-color: var(--primaryitemcolor);
   border-radius: 50%;
-  box-shadow:  var(--primaryitemcolor) 0px 0px 5px;
+  box-shadow: var(--primaryitemcolor) 0px 0px 5px;
   backdrop-filter: blur(15px);
   color: white;
   font-size: 16px;
@@ -69,7 +69,7 @@
   height: 50px;
   background-color: var(--primarybackground);
   border-radius: 50%;
-  box-shadow:  var(--primaryitemcolor) 0px 0px 2px;
+  box-shadow: var(--primaryitemcolor) 0px 0px 2px;
   color: var(--primaryitemcolor);
   font-size: 16px;
   font-weight: bold;
@@ -84,7 +84,7 @@
   height: 50px;
   background-color: var(--primarybackground);
   border-radius: 50%;
-  box-shadow:  var(--primaryitemcolor) 0px 0px 2px;
+  box-shadow: var(--primaryitemcolor) 0px 0px 2px;
   color: var(--primaryitemcolor);
   font-size: 16px;
   font-weight: bold;

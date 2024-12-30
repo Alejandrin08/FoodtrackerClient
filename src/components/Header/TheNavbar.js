@@ -98,6 +98,10 @@ const TheNavbar = (props) => {
               Testimonials
             </Nav.Link>
 
+            <Link to="/restaurants" className={`${classes.nav__link} me-4`}>
+              Restaurantes
+            </Link>
+
             {!isLoggedIn ? (
               <>
                 <TheButton to="/login" className={`me-4`}>
