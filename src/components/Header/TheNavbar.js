@@ -8,12 +8,13 @@ import TheButton from "../Ui/TheButton";
 import classes from "./TheNavbar.module.css";
 import Logo from "../../assets/Logo/Logo.svg";
 import { jwtDecode } from 'jwt-decode';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const TheNavbar = (props) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
+  const [userRole, setUserRole] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("authToken");
 
@@ -32,9 +33,10 @@ const TheNavbar = (props) => {
       try {
         const decodedToken = jwtDecode(token);
         setUserName(decodedToken.username);
+        setUserRole(decodedToken.roles);
         setIsLoggedIn(true);
       } catch (error) {
-        console.error('Error decodificando el token:', error);
+        console.error("Error decodificando el token:", error);
         setIsLoggedIn(false);
       }
     }
@@ -43,7 +45,9 @@ const TheNavbar = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     setUserName(null);
+    setUserRole(null);
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
@@ -60,10 +64,7 @@ const TheNavbar = (props) => {
             <img src={Logo} alt="My logo"></img>
           </ScrollLink>
         </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className={classes.toggle}
-        />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className={classes.toggle} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className={`${classes.nav__linkgroup} ms-auto`}>
             <Nav.Link
@@ -72,10 +73,7 @@ const TheNavbar = (props) => {
             >
               Home
             </Nav.Link>
-            <Nav.Link
-              className={`${classes.nav__link} me-4`}
-              onClick={() => handleScroll("why")}
-            >
+            <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("why")}>
               ¿Por qué elegirnos?
             </Nav.Link>
             {/*
@@ -86,10 +84,7 @@ const TheNavbar = (props) => {
               Our dishes
             </Nav.Link>
             */}
-            <Nav.Link
-              className={`${classes.nav__link} me-4`}
-              onClick={() => handleScroll("about")}
-            >
+            <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("about")}>
               Sobre nosotros
             </Nav.Link>
             {/*
@@ -100,6 +95,10 @@ const TheNavbar = (props) => {
               Testimonials
             </Nav.Link>
             */}
+            <Link to="/restaurants" className={`${classes.nav__link} me-4`}>
+              Restaurantes
+            </Link>
+
             {!isLoggedIn ? (
               <>
                 <TheButton to="/login" className={`me-4`}>
@@ -119,17 +118,26 @@ const TheNavbar = (props) => {
                     <Link to="/profile" className={classes.dropdownItem}>
                       Modificar Cuenta
                     </Link>
+                    {userRole === "ROLE_OWNER" && (
+                      <Link to="/edit-restaurant" className={classes.dropdownItem}>
+                        Modificar Restaurante
+                      </Link>
+                    )}
+                    {userRole === "ROLE_CLIENT" && (
+                      <Link to="/register-restaurant" className={classes.dropdownItem}>
+                        Registrar Restaurante
+                      </Link>
+                    )}
                     <button onClick={handleLogout} className={classes.dropdownItem}>
                       Cerrar Sesión
                     </button>
                   </div>
                 </div>
+                <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
+                  <NavCartButton onClick={props.onShowCart} />
+                </Nav.Link>
               </div>
             )}
-
-            <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
-              <NavCartButton onClick={props.onShowCart} />
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
