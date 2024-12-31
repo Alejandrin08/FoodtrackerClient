@@ -64,6 +64,6 @@
 }
 
 .sliderCircle.active {
-    background-color: #ff9800; 
+    background-color: var(--primaryitemcolor); 
     color: #fff;
 }

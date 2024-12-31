@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, Container } from 'react-bootstrap';
 import TheButton from "../Ui/TheButton";
 import Input from "../Ui/Input";
-import styles from './SignUpOne.module.css';
+import styles from './SignUp.module.css';
 import { useParams } from 'react-router-dom';
 import useClient from '../../hooks/useClient';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ const SignUpTwo = () => {
     const validatePhone = () => {
         const phoneRegex = /^\d{10}$/;
         if (!phoneRegex.test(phone)) {
-            setPhoneError("El número de teléfono debe contener exactamente 10 dígitos.");
+            setPhoneError("Número de teléfono no valido.");
             return false;
         }
         setPhoneError("");
