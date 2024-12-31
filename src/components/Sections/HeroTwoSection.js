@@ -19,8 +19,8 @@ const HeroTwoSection = () => {
         >
           <Col xs={12}>
             <div className={classes.header_div}>
-              <h2>Why choose us</h2>
-              <p>This is what makes our product different</p>
+              <h2>¿Por qué elegirnos?</h2>
+              <p>Esto es lo que hace que nuestro producto sea diferente</p>
             </div>
           </Col>
         </Row>
@@ -40,10 +40,10 @@ const HeroTwoSection = () => {
                   <img src={hamimg} alt="Hanmburger"></img>
                 </div>
                 <div className={classes.card_text_div}>
-                  <h5>Easy to order</h5>
+                  <h5>Fácil de ordenar</h5>
                   <p>
-                    Order food at a single click and select all food to order at
-                    any poin in time and at ease and comfort{" "}
+                  Pide comida con un solo clic y selecciona todos los 
+                  alimentos para pedir en cualquier momento y con comodidad y facilidad.{" "}
                   </p>
                 </div>
               </div>
@@ -63,10 +63,10 @@ const HeroTwoSection = () => {
                   <img src={deliveryimg} alt="Delivery man"></img>
                 </div>
                 <div className={classes.card_text_div}>
-                  <h5>fast delivery</h5>
+                  <h5>Entrega rápida</h5>
                   <p>
-                    food delivery fast and reliable and get delivered at
-                    deliivery time and location any day, any time
+                  Entrega de alimentos rápida y confiable, y se entregan
+                   en el horario y lugar de entrega, cualquier día, a cualquier hora.
                   </p>
                 </div>
               </div>
@@ -87,10 +87,10 @@ const HeroTwoSection = () => {
                   <img src={topimg} alt="Thumbs up"></img>
                 </div>
                 <div className={classes.card_text_div}>
-                  <h5>100% quality</h5>
+                  <h5>100% calidad</h5>
                   <p>
-                    We provide quality food for you and your loved ones for
-                    health and so onnnnnn and for wellness
+                  Ofrecemos alimentos de calidad para usted y sus seres queridos
+                   para la salud y demás y para el bienestar.
                   </p>
                 </div>
               </div>
