@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, Container } from 'react-bootstrap';
 import TheButton from "../Ui/TheButton";
 import Input from "../Ui/Input";
-import styles from './SignUpOne.module.css';
+import styles from './SignUp.module.css';
 import useAccount from '../../hooks/useAccount';
 
 const SignUpOne = () => {
@@ -12,9 +12,11 @@ const SignUpOne = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailValid, setEmailValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
     const { registerUser, loading, error } = useAccount();
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,}\S$/;
 
     const handleRegister = async (e) => {
@@ -26,10 +28,16 @@ const SignUpOne = () => {
         }
     };
 
+    const handleEmailChange = (e) => {
+        const value = e.target.value;
+        setEmail(value);
+        setEmailValid(emailRegex.test(value));
+    };
+
     const handlePasswordChange = (e) => {
         const value = e.target.value;
         setPassword(value);
-        setPasswordValid(passwordRegex.test(value)); 
+        setPasswordValid(passwordRegex.test(value));
     };
 
     return (
@@ -42,7 +50,7 @@ const SignUpOne = () => {
             </div>
             <Form className={styles.signupForm} onSubmit={handleRegister}>
                 <Form.Group as={Row} className="mb-3 align-items-center" controlId="formEmail">
-                    <Form.Label column sm="4" className="text-sm-end">
+                    <Form.Label column sm="4" className={`text-sm-end align-self-start ${styles.labelSignUp}`}>
                         Correo Electrónico:
                     </Form.Label>
                     <Col sm="8">
@@ -51,8 +59,13 @@ const SignUpOne = () => {
                             placeholder="Correo electrónico"
                             id="email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleEmailChange}
                         />
+                        {!emailValid && email && (
+                            <Row className="text-danger text-center">
+                                Correo electrónico inválido.
+                            </Row>
+                        )}
                     </Col>
                 </Form.Group>
 
@@ -67,21 +80,18 @@ const SignUpOne = () => {
                             placeholder="Contraseña"
                             id="password"
                             value={password}
-                            onChange={handlePasswordChange} 
+                            onChange={handlePasswordChange}
                         />
                     </Col>
+                    {!passwordValid && password && (
+                        <Row className="text-danger text-center justify-content-center">
+                            La contraseña debe tener al menos 6 caracteres, incluir una letra mayúscula, una minúscula y un número.
+                        </Row>
+                    )}
                 </Form.Group>
 
-                {!passwordValid && password && (
-                    <Row>
-                        <Col className="text-danger text-center">
-                            La contraseña debe tener al menos 6 caracteres, incluir una letra mayúscula, una minúscula y un número.
-                        </Col>
-                    </Row>
-                )}
-
                 <Row>
-                    <Col className="text-center mb-3"> 
+                    <Col className="text-center mb-3">
                         {error && <div className="text-danger">{error}</div>}
                     </Col>
                 </Row>
@@ -90,7 +100,7 @@ const SignUpOne = () => {
                     <Col className="text-center">
                         <TheButton
                             type="submit"
-                            disabled={loading || !passwordValid} 
+                            disabled={loading || !emailValid || !passwordValid}
                         >
                             Continuar
                         </TheButton>

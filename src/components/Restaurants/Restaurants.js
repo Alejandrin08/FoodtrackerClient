@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Restaurants.module.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import useRestaurant from "../../hooks/useRestaurant";
@@ -6,6 +6,10 @@ import useRestaurant from "../../hooks/useRestaurant";
 const Restaurants = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const { loading, error, restaurants } = useRestaurant(selectedCategory);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category === selectedCategory ? null : category);
