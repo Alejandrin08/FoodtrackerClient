@@ -74,21 +74,27 @@ const TheNavbar = (props) => {
               Home
             </Nav.Link>
             <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("why")}>
-              Why choose us
+              ¿Por qué elegirnos?
             </Nav.Link>
-            <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("dishes")}>
+            {/*
+            <Nav.Link
+              className={`${classes.nav__link} me-4`}
+              onClick={() => handleScroll("dishes")}
+            >
               Our dishes
             </Nav.Link>
+            */}
             <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("about")}>
-              About us
+              Sobre nosotros
             </Nav.Link>
+            {/*
             <Nav.Link
               className={`${classes.nav__link} me-4`}
               onClick={() => handleScroll("testimonials")}
             >
               Testimonials
             </Nav.Link>
-
+            */}
             <Link to="/restaurants" className={`${classes.nav__link} me-4`}>
               Restaurantes
             </Link>
