@@ -90,6 +90,7 @@
   font-weight: 500;
   color: var(--dark);
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .navbar .nav__link:focus {

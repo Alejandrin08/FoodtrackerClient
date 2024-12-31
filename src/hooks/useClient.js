@@ -15,7 +15,7 @@ const useClient = () => {
     try {
       const data = await registerClient(id, name, phone); 
       setClient(data);
-      navigate(`/account/login`); 
+      navigate(`/login`); 
     } catch (err) {
       setError(err.message);
     } finally {
