@@ -1,0 +1,20 @@
+.mapContainer {
+  width: 90%;
+  height: 400px;
+}
+
+.containerSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.autocompleteInput {
+  width: 890px;
+  height: 40px;
+  padding: 0 12px;
+  margin-bottom: 10px;
+}
+
