@@ -3,8 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 90vh;
   margin-top: 40px;
+}
+
+.labelSignUp {
+  margin-top: 10px;
 }
 
 .signupForm {
@@ -12,11 +16,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   width: 50%;
-  height: 50%;
+  height: 70%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 .inputSignUp {
@@ -52,7 +57,7 @@
   height: 50px;
   background-color: var(--primaryitemcolor);
   border-radius: 50%;
-  box-shadow:  var(--primaryitemcolor) 0px 0px 5px;
+  box-shadow: var(--primaryitemcolor) 0px 0px 5px;
   backdrop-filter: blur(15px);
   color: white;
   font-size: 16px;
@@ -68,9 +73,35 @@
   height: 50px;
   background-color: var(--primarybackground);
   border-radius: 50%;
-  box-shadow:  var(--primaryitemcolor) 0px 0px 2px;
+  box-shadow: var(--primaryitemcolor) 0px 0px 2px;
   color: var(--primaryitemcolor);
   font-size: 16px;
   font-weight: bold;
 }
 
+.sliderCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primarybackground);
+  border-radius: 50%;
+  box-shadow: var(--primaryitemcolor) 0px 0px 2px;
+  color: var(--primaryitemcolor);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sliderCircle.selected {
+  background-color: var(--primaryitemcolor);
+  color: white;
+}
+
+.disabledButton {
+  background-color: #ccc;
+  opacity: 0.6;
+  cursor: default;
+}
