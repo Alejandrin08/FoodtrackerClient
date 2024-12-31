@@ -21,22 +21,20 @@ const HeroSection = () => {
           >
             <div className={classes.text__div}>
               <h1>
-                Enjoy <span>home made meals</span> far away from home
+                Disfrute <span>de comida deliciosa</span> lejos de casa
               </h1>
               <p>
-                Helping you enjoy comfortable and healthy food anywhere and
-                anytime on the go
+                Te ayudamos a disfrutar de una comida cómoda y saludable en cualquier lugar y en cualquier momento.
               </p>
 
               <Link
                 className={classes.order_button}
-                to="dishes"
                 spy={true}
                 smooth={true}
                 offset={-50}
                 duration={500}
               >
-                <TheButton>Order Now</TheButton>
+                <TheButton to="/login" className={`me-4`}>Ordene ahora</TheButton>
               </Link>
             </div>
           </Col>
@@ -62,17 +60,17 @@ const HeroSection = () => {
           <div className={classes.number__properties}>
             <div>
               <p className={classes.number__properties__digit}>500+</p>
-              <p className={classes.number__properties__text}>Food partners</p>
+              <p className={classes.number__properties__text}>Restaurantes socios</p>
             </div>
             <div className="mx-4">
               <p className={classes.number__properties__digit}>1k+</p>
               <p className={classes.number__properties__text}>
-                orders delivered
+                Pedidos entregados
               </p>
             </div>
             <div>
               <p className={classes.number__properties__digit}>12k+</p>
-              <p className={classes.number__properties__text}>Clients</p>
+              <p className={classes.number__properties__text}>Clientes</p>
             </div>
           </div>
         </Row>

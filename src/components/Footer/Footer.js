@@ -33,19 +33,20 @@ const Footer = () => {
               </div>
               <div className={classes.content_div}>
                 <p>
-                  Solution for easy and flexible getting meals for the
-                  household.You can trust us anywhere through this platform
+                  Solución para conseguir comidas para el hogar de forma fácil y
+                  flexible. Puedes confiar en nosotros en cualquier lugar a través
+                  de esta plataforma
                 </p>
                 <p>
-                  &copy;2022 Made with <i className="bi bi-heart-fill"></i>{" "}
-                  by&nbsp;
+                  &copy;2024 {" "}
+
                   <a
-                    href="https://github.com/Eniola-Codes"
+                    href="https://github.com/Alejandrin08/FoodtrackerClient.git"
                     target="_blank"
                     rel="noreferrer"
                     className={classes.eniola_codes}
                   >
-                    EniolaCodes
+                    Food Tracker
                   </a>
                 </p>
               </div>
@@ -54,70 +55,39 @@ const Footer = () => {
 
           <Col lg={3}>
             <div className={classes.about}>
-              <h3>About</h3>
-              <p>Our Company</p>
-              <p>Career</p>
-              <p>Investors Relations</p>
-              <p>Social Impact</p>
+              <h3>Acerca de</h3>
+              <p>¿Por qué elegirnos?</p>
+              <p>Sobre nosotros</p>
             </div>
           </Col>
 
           <Col lg={3}>
             <div className={classes.social}>
               <h3>Social</h3>
-              <a
-                href="https://www.instagram.com/code_redex/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p>
-                  <img
-                    src={insta}
-                    alt="instagram"
-                    className={classes.social_icon}
-                  ></img>
-                </p>
-              </a>
-              <a
-                href="https://mobile.twitter.com/EniolaCodes/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p>
-                  <img
-                    src={twitter}
-                    alt="twitter"
-                    className={classes.social_icon}
-                  ></img>
-                </p>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/eni-ola/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p>
-                  <img
-                    src={fb}
-                    alt="facebook"
-                    className={classes.social_icon}
-                  ></img>
-                </p>
-              </a>
+              <p>
+                <img
+                  src={insta}
+                  alt="instagram"
+                  className={classes.social_icon}
+                ></img>
+              </p>
+              <p>
+                <img
+                  src={twitter}
+                  alt="twitter"
+                  className={classes.social_icon}
+                ></img>
+              </p>
+              <p>
+                <img
+                  src={fb}
+                  alt="facebook"
+                  className={classes.social_icon}
+                ></img>
+              </p>
             </div>
           </Col>
 
-          <p className={classes.mobile_copy}>
-            &copy;2022 Made with <i className="bi bi-heart-fill"></i> by&nbsp;
-            <a
-              href="https://github.com/Eniola-Codes"
-              target="_blank"
-              rel="noreferrer"
-              className={classes.eniola_codes}
-            >
-              EniolaCodes
-            </a>
-          </p>
         </Row>
       </Container>
     </div>
