@@ -24,22 +24,26 @@ const HeroFourSection = () => {
         <Modal>
           <div className={classes.about_modal}>
             <div className={classes.about_header}>
-              <h2 className={classes.text_modal_header}>About us</h2>
+              <h2 className={classes.text_modal_header}>Sobre nosotros</h2>
             </div>
             <div className={classes.about_body}>
               <p className={classes.text_content}>
-                I make delicious healthy meals for busy people who want to enjoy
-                home made food without the hassle of cooking. Why would you cook
-                when you don't have to? The Hot Plate makes it easy to eat your
-                favorite home cooked food anywhere you want. You deserve to eat
-                great food, whether you're at home or on the go. We'll help you
-                find unique meals wherever you are. With our app, you never have
-                to settle for unhealthy, expensive takeaway food again.
+                En nuestra misión por revolucionar el mundo de la comida a domicilio,
+                trabajamos estrechamente con restaurantes, chefs locales y emprendedores
+                gastronómicos para ofrecerte opciones únicas y de calidad. Creemos en apoyar
+                el talento culinario de nuestra comunidad, brindándoles una plataforma
+                para llegar a más personas mientras tú disfrutas de una experiencia
+                gastronómica inolvidable.
+                Nuestro compromiso va más allá de la entrega: priorizamos la frescura,
+                la rapidez y la satisfacción de cada cliente. Con tecnología de punta,
+                un equipo dedicado y atención personalizada, garantizamos que cada
+                pedido sea más que una simple comida; es una conexión con los sabores
+                y pasiones que hacen especial a cada cocina.
               </p>
             </div>
             <div className={classes.about_footer}>
               <div className={classes.button_modal_div}>
-                <TheButton onClick={closeModal}>Cancel</TheButton>
+                <TheButton onClick={closeModal}>Cancelar</TheButton>
               </div>
             </div>
           </div>
@@ -55,17 +59,19 @@ const HeroFourSection = () => {
               data-aos-duration="700"
             >
               <div className={classes.text_div}>
-                <h2 className={classes.text_header}>About us</h2>
+                <h2 className={classes.text_header}>Sobre nosotros</h2>
                 <p className={classes.text_content}>
-                  I make delicious healthy meals for busy people who want to
-                  enjoy home made food without the hassle of cooking. Why would
-                  you cook when you don't have to? The Hot Plate makes it easy
-                  to eat your favorite home cooked food anywhere you want. You
-                  deserve to eat great food, whether you're at home or on the
-                  go.
+                  En Food Tracker, transformamos la forma en que disfrutas de tus
+                  comidas favoritas. Conectamos los mejores sabores locales y opciones únicas
+                  con personas que valoran la calidad y la comodidad. ¿Antojo de algo especial?
+                  Nuestra plataforma te acerca a una amplia variedad de platillos preparados con
+                  dedicación, listos para llegar a tu puerta en pocos minutos. No importa si
+                  es un almuerzo rápido o una cena relajada, aquí encontrarás algo para cada
+                  momento. Porque sabemos que disfrutar buena comida no debería ser complicado,
+                  ¡déjanos hacerlo sencillo para ti!
                 </p>
                 <div className={classes.button_div}>
-                  <TheButton onClick={aboutModal}>See more</TheButton>
+                  <TheButton onClick={aboutModal}>Saber más</TheButton>
                 </div>
               </div>
             </Col>
