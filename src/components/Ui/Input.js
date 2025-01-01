@@ -10,7 +10,9 @@ const Input = React.forwardRef((props, ref) => {
       placeholder={props.placeholder}
       onChange={props.onChange}
       {...props.input}
+      disabled={props.disabled}  
     />
   );
 });
+
 export default Input;

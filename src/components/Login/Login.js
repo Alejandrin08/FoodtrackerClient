@@ -61,6 +61,18 @@ const Login = () => {
                 </Form.Group>
 
                 <Row>
+                    <Col className="text-center mb-3">
+                        <a href="/signup">Registrarse</a>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col className="text-center mb-3">
+                        <a href="/forgot-password">Olvidé mi contraseña</a>
+                    </Col>
+                </Row>
+
+                <Row>
                     <Col className="text-center mb-3"> 
                         {error && <div className="text-danger">{error}</div>}
                     </Col>
