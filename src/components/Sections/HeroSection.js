@@ -28,13 +28,14 @@ const HeroSection = () => {
               </p>
 
               <Link
+              to="dishes"
                 className={classes.order_button}
                 spy={true}
                 smooth={true}
                 offset={-50}
                 duration={500}
               >
-                <TheButton to="/login" className={`me-4`}>Ordene ahora</TheButton>
+                <TheButton  className={`me-4`}>Ordene ahora</TheButton>
               </Link>
             </div>
           </Col>

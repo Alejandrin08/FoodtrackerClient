@@ -13,6 +13,7 @@ const Restaurants = () => {
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category === selectedCategory ? null : category);
+        console.log(restaurants);
     };
 
     return (
@@ -62,6 +63,7 @@ const Restaurants = () => {
                     {restaurants.map((restaurant) => (
                         <RestaurantCard
                             key={restaurant.id}
+                            data={restaurant}
                             restaurantName={restaurant.restaurantName}
                             imageUrl={restaurant.imageUrl}
                             averageRating={restaurant.averageRating}

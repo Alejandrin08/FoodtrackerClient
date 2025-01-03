@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const TheNavbar = (props) => {
+const TheNavbar = (details) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
   const [userRole, setUserRole] = useState(null);
@@ -73,9 +73,7 @@ const TheNavbar = (props) => {
             >
               Home
             </Nav.Link>
-            <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("why")}>
-              ¿Por qué elegirnos?
-            </Nav.Link>
+
             {/*
             <Nav.Link
               className={`${classes.nav__link} me-4`}
@@ -84,9 +82,7 @@ const TheNavbar = (props) => {
               Our dishes
             </Nav.Link>
             */}
-            <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("about")}>
-              Sobre nosotros
-            </Nav.Link>
+
             {/*
             <Nav.Link
               className={`${classes.nav__link} me-4`}
@@ -95,12 +91,18 @@ const TheNavbar = (props) => {
               Testimonials
             </Nav.Link>
             */}
-            <Link to="/restaurants" className={`${classes.nav__link} me-4`}>
-              Restaurantes
-            </Link>
+
 
             {!isLoggedIn ? (
               <>
+                <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("why")}>
+                  ¿Por qué elegirnos?
+                </Nav.Link>
+
+                <Nav.Link className={`${classes.nav__link} me-4`} onClick={() => handleScroll("about")}>
+                  Sobre nosotros
+                </Nav.Link>
+
                 <TheButton to="/login" className={`me-4`}>
                   Iniciar Sesión
                 </TheButton>
@@ -111,6 +113,9 @@ const TheNavbar = (props) => {
               </>
             ) : (
               <div className={classes.userMenu}>
+                <Link to="/restaurants" className={`${classes.nav__link} me-4`}>
+                  Restaurantes
+                </Link>
                 <p>{userName}</p>
                 <div className={classes.dropdown}>
                   <button className={classes.dropdownButton}>▼</button>
@@ -134,7 +139,7 @@ const TheNavbar = (props) => {
                   </div>
                 </div>
                 <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
-                  <NavCartButton onClick={props.onShowCart} />
+                  <NavCartButton onClick={details.onShowCart} />
                 </Nav.Link>
               </div>
             )}

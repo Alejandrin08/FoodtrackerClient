@@ -1,7 +1,7 @@
 import React from "react";
 import HeroSection from "./HeroSection";
 import HeroTwoSection from "./HeroTwoSection";
-//import HeroThreeSection from "./HeroThreeSection";
+import HeroThreeSection from "./HeroThreeSection";
 import HeroFourSection from "./HeroFourSection";
 //import HeroFiveSection from "./HeroFiveSection";
 //import HeroSixSection from "./HeroSixSection";
@@ -15,7 +15,7 @@ const Sections = () => {
       <HeroSection />
       <MapSection/>
       <HeroTwoSection />
-      {/*<HeroThreeSection />*/}
+      <HeroThreeSection />
       <HeroFourSection />
       {/*<HeroFiveSection />
       <HeroSixSection />

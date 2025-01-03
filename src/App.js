@@ -11,6 +11,8 @@ import SignUpTwo from "./components/SignUp/SignUpTwo";
 import Error from "./components/Error/Error";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Restaurants from "./components/Restaurants/Restaurants";
+import Menu from "./components/Menu/Menu"
+import Order from "./components/Order/Order"
 import Swal from "sweetalert2";
 
 const App = () => {
@@ -57,6 +59,10 @@ const App = () => {
           <Route path="/profile" element={<EditProfile />} />
 
           <Route path="/restaurants" element={<Restaurants />} />
+
+          <Route path="/menu" element={<Menu />} />
+
+          <Route path="/order" element={<Order/>} />
         </Routes>
 
         <TheFooter />
