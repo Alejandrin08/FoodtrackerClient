@@ -36,11 +36,20 @@ export const updatePassword = async (email, password) => {
     }
 };
 
-export const updateEmail = async (id, newEmail) => {
+export const updateEmail = async (id, email) => {
     try {
-        const response = await api.put(`/account/${id}`, { newEmail });
+        const response = await api.put(`/account/${id}`, { email });
         return response.data;
     } catch (error) {
         throw new Error("Error al actualizar el correo");
     }
-}
+};
+
+export const getAccount = async (id) => {
+    try {
+        const response = await api.get(`/account/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al obtener la cuenta");
+    }
+};
