@@ -92,6 +92,10 @@ const cartReducer = (state, action) => {
       //END
     };
   }
+
+  if (action.type === "CLEAR") {
+    return defaultCartState; // Vuelve al estado inicial (carrito vacío)
+  }
   //Returns the default cart state if no condition is met
   return defaultCartState;
   //END
@@ -113,6 +117,10 @@ const CartProvider = (props) => {
     });
   };
 
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: "CLEAR" });
+  };
+
   //dispatching the cart REMOVE action
   const removeItemHandler = (id) => {
     dispatchCartAction({
@@ -127,6 +135,7 @@ const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
+    clearCart: clearCartHandler,
   };
 
   //Rendering every content being rendered by the use CartContext, using the .Provider to let the context be able to manage other parts of the application

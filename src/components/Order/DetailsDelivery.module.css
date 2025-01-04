@@ -1,0 +1,25 @@
+.deliveryDetails {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.paymentOptions {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+.paymentButton {
+    flex: 1;
+}
+
+
+.submitButton {
+    background-color: #ff4d00;
+    border-color: #28a7#ff4d0045;
+}
+
+.submitButton:hover {
+    background-color: #ff4d00;
+    border-color: #ff4d00;
+}

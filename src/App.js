@@ -61,9 +61,6 @@ const App = () => {
             <Route path="/signup/:id" element={<SignUpTwo />} />
             <Route path="/error" element={<Error />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/order" element={<Order />} />
-
             <Route
               path="/profile"
               element={
@@ -87,7 +84,24 @@ const App = () => {
                   <RegisterRestaurant />
                 </ProtectedRoute>
               }
+            />            <Route
+              path="/menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
+                  <Menu />
+                </ProtectedRoute>
+              }
             />
+            <Route
+              path="/order"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
+                  <Order />
+                </ProtectedRoute>
+              }
+            />
+
+
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>
 

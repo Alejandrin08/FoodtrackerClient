@@ -12,7 +12,7 @@ import Modal from "../Ui/Modal";
 import Alert from "react-bootstrap/Alert";
 import CartContext from "../store/cartcontext";
 
-const MenuCard = ({ details, restaurantName }) => {
+const MenuCard = ({ details, restaurantId }) => {
     const [showModal, setShowModal] = useState(false);
     const [showAlertModal, setShowAlertModal] = useState(false);
 
@@ -30,7 +30,7 @@ const MenuCard = ({ details, restaurantName }) => {
     const validateDish = () => {
         const hasItems = cartCtx.items.length > 0;
         if (hasItems) {
-            const hasRestaurant = cartCtx.items.some(item => item.restaurant === restaurantName)
+            const hasRestaurant = cartCtx.items.some(item => item.restaurant === restaurantId)
             if (hasRestaurant) {
                 onAddToCartHandler();
             } else {
@@ -49,7 +49,7 @@ const MenuCard = ({ details, restaurantName }) => {
             amount: 1,
             price: details.price,
             src: details.imageUrl,
-            restaurant: restaurantName,
+            restaurant: restaurantId,
         });
     };
     return (

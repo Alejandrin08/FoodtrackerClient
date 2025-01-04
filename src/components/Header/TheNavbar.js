@@ -3,7 +3,7 @@ import NavCartButton from "./NavCartButton";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link as ScrollLink } from "react-scroll";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TheButton from "../Ui/TheButton";
 import classes from "./TheNavbar.module.css";
 import Logo from "../../assets/Logo/Logo.svg";
@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 
 const TheNavbar = (details) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [userName, setUserName] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -137,9 +138,11 @@ const TheNavbar = (details) => {
                     </button>
                   </div>
                 </div>
-                <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
-                  <NavCartButton onClick={details.onShowCart} />
-                </Nav.Link>
+                {location.pathname !== "/order" && (
+                  <Nav.Link href="#buttons" className={`${classes.nav__link}`}>
+                    <NavCartButton onClick={details.onShowCart} />
+                  </Nav.Link>
+                )}
               </div>
             )}
           </Nav>
