@@ -1,5 +1,14 @@
 import api from "./api";
 
+export const registerRestaurant = async (restaurantData) => {
+    try {
+        const response = await api.post("/restaurant/", restaurantData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al registrar el restaurante");
+    }
+};
+
 export const getAllRestaurants = async () => {
     try {
         const response = await api.get("/restaurant/");

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllRestaurants, getRestaurantsByCategory } from "../services/restaurantService";
+import { getAllRestaurants, getRestaurantsByCategory, registerRestaurant } from "../services/restaurantService";
 
 const useRestaurant = (selectedCategory) => {
     const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ const useRestaurant = (selectedCategory) => {
         };
 
         fetchRestaurants();
-    }, [selectedCategory]); 
+    }, [selectedCategory]);
 
     return { loading, error, restaurants };
 };

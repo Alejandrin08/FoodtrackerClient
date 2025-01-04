@@ -44,12 +44,12 @@ const Restaurants = () => {
                     className={`${styles.sliderCircle} ${selectedCategory === "mexicana" ? styles.active : ""}`}
                     onClick={() => handleCategoryClick("mexicana")}
                 >
-                    <i className="fa-solid fa-taco"></i>
+                    <i class="fa-solid fa-pepper-hot"></i>
                     <span>Mexicana</span>
                 </div>
             </div>
 
-            <div className="container-sm mt-5">
+            <div className="container-auto mt-5">
                 <h2 className="mb-5">Restaurantes</h2>
 
                 {loading && <p>Cargando restaurantes...</p>}
@@ -59,7 +59,7 @@ const Restaurants = () => {
                     <p>No se encontraron restaurantes para esta categoría.</p>
                 )}
 
-                <div className="row justify-content-evenly">
+                <div className="row justify-content-center gap-3">
                     {restaurants.map((restaurant) => (
                         <RestaurantCard
                             key={restaurant.id}
