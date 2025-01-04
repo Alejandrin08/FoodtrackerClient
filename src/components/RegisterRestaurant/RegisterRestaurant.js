@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Card, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -22,27 +22,33 @@ const RestaurantRegistrationForm = () => {
         imageUrl: ""
     });
 
-    const [errors, setErrors] = useState({});
-    const [touched, setTouched] = useState({}); 
+    const [errors, setErrors] = useState({
+        restaurantName: "",
+        categoryName: "",
+        schedule: "",
+        phoneNumber: "",
+        location: "",
+        imageUrl: ""
+    });
+
+    const [touched, setTouched] = useState({
+        restaurantName: false,
+        categoryName: false,
+        schedule: false,
+        phoneNumber: false,
+        location: false,
+        imageUrl: false
+    });
 
     const validateForm = () => {
         const { restaurantName, categoryName, schedule, phoneNumber, location, imageUrl } = formData;
-
         const newErrors = {};
+
         if (restaurantName.trim() === "") newErrors.restaurantName = "El nombre del restaurante es obligatorio.";
         if (categoryName.trim() === "") newErrors.categoryName = "La categoría es obligatoria.";
         if (Object.keys(schedule).length === 0) newErrors.schedule = "El horario es obligatorio.";
         if (!/^\d{10}$/.test(phoneNumber)) newErrors.phoneNumber = "El número de teléfono debe tener 10 dígitos.";
-        if (
-            !location ||
-            typeof location !== "object" ||
-            !("lat" in location) ||
-            !("lng" in location) ||
-            isNaN(location.lat) ||
-            isNaN(location.lng)
-        ) {
-            newErrors.location = "Debes seleccionar una ubicación válida.";
-        }
+        if (!location.trim()) newErrors.location = "Debes seleccionar una ubicación válida.";
         if (!/^https?:\/\/.+\..+/.test(imageUrl)) newErrors.imageUrl = "La URL de la imagen no es válida.";
 
         setErrors(newErrors);
@@ -52,17 +58,17 @@ const RestaurantRegistrationForm = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        setTouched((prev) => ({ ...prev, [name]: true })); 
+        setTouched((prev) => ({ ...prev, [name]: true }));
     };
 
     const handleCategoryChange = (category) => {
         setFormData((prev) => ({ ...prev, categoryName: category }));
-        setTouched((prev) => ({ ...prev, categoryName: true })); 
+        setTouched((prev) => ({ ...prev, categoryName: true }));
     };
 
     const handleScheduleChange = (schedule) => {
         setFormData((prev) => ({ ...prev, schedule }));
-        setTouched((prev) => ({ ...prev, schedule: true })); 
+        setTouched((prev) => ({ ...prev, schedule: true }));
     };
 
     const handleSubmit = async (e) => {
@@ -70,12 +76,7 @@ const RestaurantRegistrationForm = () => {
 
         if (!validateForm()) return;
 
-        const locationString = `${formData.location.lat},${formData.location.lng}`;
-        const updatedFormData = {
-            ...formData,
-            location: locationString
-        };
-
+        const updatedFormData = { ...formData };
         const result = await register(updatedFormData);
 
         if (result) {
@@ -102,13 +103,14 @@ const RestaurantRegistrationForm = () => {
             categoryName.trim() &&
             Object.keys(schedule).length > 0 &&
             /^\d{10}$/.test(phoneNumber) &&
-            location &&
-            typeof location === "object" &&
-            "lat" in location &&
-            "lng" in location &&
+            location.trim() &&
             /^https?:\/\/.+\..+/.test(imageUrl)
         );
     };
+
+    useEffect(() => {
+        validateForm();
+    }, [formData]);
 
     return (
         <Container className={`mb-5 ${styles.container}`}>
@@ -160,22 +162,22 @@ const RestaurantRegistrationForm = () => {
                         />
                         {touched.location && errors.location && <div className="text-danger">{errors.location}</div>}
 
-                        <Form.Group className="mb-3 mt-5">
+                        <Form.Group className="mb-3">
                             <Form.Label>URL de la imagen</Form.Label>
                             <Form.Control
-                                type="url"
+                                type="text"
                                 name="imageUrl"
                                 value={formData.imageUrl}
                                 onChange={handleInputChange}
                                 isInvalid={touched.imageUrl && !!errors.imageUrl}
-                                placeholder="https://example.com/restaurant-image.jpg"
                             />
                             <Form.Control.Feedback type="invalid">{errors.imageUrl}</Form.Control.Feedback>
                         </Form.Group>
 
                         <TheButton type="submit" className="w-100 mt-3 mb-3" disabled={!isFormComplete() || loading}>
-                            {loading ? "Registrando..." : "Registrar restaurante"}
+                            {loading ? "Cargando..." : "Registrar Restaurante"}
                         </TheButton>
+
                     </Form>
                 </Card.Body>
             </Card>

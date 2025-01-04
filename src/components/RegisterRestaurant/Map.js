@@ -17,12 +17,9 @@ const MapSection = ({ location, onLocationChange }) => {
     const handlePlaceChanged = () => {
         const place = autocompleteRef.current.getPlace();
         if (place.geometry) {
-            const location = {
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
-            };
-            setSelectedLocation(location);
-            onLocationChange(location); 
+            const address = place.formatted_address; 
+            setSelectedLocation(address);
+            onLocationChange(address);  
         }
     };
 

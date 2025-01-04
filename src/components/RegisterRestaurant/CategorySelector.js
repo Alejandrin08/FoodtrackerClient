@@ -4,9 +4,9 @@ import TheButton from '../Ui/TheButton';
 
 const categories = [
   { name: 'Pizzas', icon: 'fa-pizza-slice' },
-  { name: 'Hamburgesas', icon: 'fa-burger' },
+  { name: 'Hamburguesas', icon: 'fa-burger' },
   { name: 'Mariscos', icon: 'fa-shrimp' },
-  { name: 'Comida Mexicana', icon: 'fa-pepper-hot' },
+  { name: 'Mexicana', icon: 'fa-pepper-hot' },
 ];
 
 export default function CategorySelector({ selectedCategory, onSelectCategory }) {

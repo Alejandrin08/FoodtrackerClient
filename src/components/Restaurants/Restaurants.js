@@ -20,29 +20,29 @@ const Restaurants = () => {
         <div className={styles.restaurantsContainer}>
             <div className={styles.slider}>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "hamburguesas" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("hamburguesas")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Hamburguesas" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Hamburguesas")}
                 >
                     <i className="fa-solid fa-burger"></i>
                     <span>Hamburguesas</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "pizzas" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("pizzas")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Pizzas" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Pizzas")}
                 >
                     <i className="fa-solid fa-pizza-slice"></i>
                     <span>Pizzas</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "mariscos" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("mariscos")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Mariscos" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Mariscos")}
                 >
                     <i className="fa-solid fa-shrimp"></i>
                     <span>Mariscos</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "mexicana" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("mexicana")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Mexicana" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Mexicana")}
                 >
                     <i class="fa-solid fa-pepper-hot"></i>
                     <span>Mexicana</span>
