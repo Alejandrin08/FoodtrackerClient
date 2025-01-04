@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Restaurants.module.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
-import useRestaurant from "../../hooks/useRestaurant";
+import useRestaurant from "../../hooks/useGetRestaurants";
 
 const Restaurants = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -20,36 +20,36 @@ const Restaurants = () => {
         <div className={styles.restaurantsContainer}>
             <div className={styles.slider}>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "hamburguesas" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("hamburguesas")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Hamburguesas" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Hamburguesas")}
                 >
                     <i className="fa-solid fa-burger"></i>
                     <span>Hamburguesas</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "pizzas" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("pizzas")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Pizzas" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Pizzas")}
                 >
                     <i className="fa-solid fa-pizza-slice"></i>
                     <span>Pizzas</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "mariscos" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("mariscos")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Mariscos" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Mariscos")}
                 >
                     <i className="fa-solid fa-shrimp"></i>
                     <span>Mariscos</span>
                 </div>
                 <div
-                    className={`${styles.sliderCircle} ${selectedCategory === "mexicana" ? styles.active : ""}`}
-                    onClick={() => handleCategoryClick("mexicana")}
+                    className={`${styles.sliderCircle} ${selectedCategory === "Mexicana" ? styles.active : ""}`}
+                    onClick={() => handleCategoryClick("Mexicana")}
                 >
-                    <i className="fa-solid fa-taco"></i>
+                    <i class="fa-solid fa-pepper-hot"></i>
                     <span>Mexicana</span>
                 </div>
             </div>
 
-            <div className="container-sm mt-5">
+            <div className="container-auto mt-5">
                 <h2 className="mb-5">Restaurantes</h2>
 
                 {loading && <p>Cargando restaurantes...</p>}
@@ -59,7 +59,7 @@ const Restaurants = () => {
                     <p>No se encontraron restaurantes para esta categoría.</p>
                 )}
 
-                <div className="row justify-content-evenly">
+                <div className="row justify-content-center gap-3">
                     {restaurants.map((restaurant) => (
                         <RestaurantCard
                             key={restaurant.id}

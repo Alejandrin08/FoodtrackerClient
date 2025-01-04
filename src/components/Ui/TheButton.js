@@ -20,6 +20,7 @@ const TheButton = (props) => {
       type={props.type || "button"} 
       onClick={handleClick}  
       disabled={props.disabled} 
+      style={props.style} 
     >
       {props.children}
     </button>
