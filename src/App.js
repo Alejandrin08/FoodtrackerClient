@@ -17,6 +17,7 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Menu from "./components/Menu/Menu"
 import Order from "./components/Order/Order"
 import Swal from "sweetalert2";
+import RegisterRestaurant from "./components/RegisterRestaurant/RegisterRestaurant";
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -77,6 +78,13 @@ const App = () => {
               }
             />
             <Route
+              path="/register-restaurant"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_CLIENT"]}>
+                  <RegisterRestaurant />
+                </ProtectedRoute>
+              }
+            />            <Route
               path="/menu"
               element={
                 <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
@@ -96,7 +104,7 @@ const App = () => {
 
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>
-          
+
           <TheFooter />
         </Router>
       </CartProvider>
