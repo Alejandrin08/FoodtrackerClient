@@ -4,7 +4,7 @@ import classes from "./CartItem.module.css";
 const CartItem = (props) => {
   //Converting the prices to two decimal place
 
-  const price = `₦${props.price.toFixed(2)}`;
+  const price = `$${props.price.toFixed(2)}`;
 
   //ENDS
 

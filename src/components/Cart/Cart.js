@@ -12,7 +12,7 @@ const Cart = (props) => {
 
   //Converting Total amount to two decimal places
 
-  const totalAmount = `₦${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
   //ENDS
 
@@ -43,6 +43,7 @@ const Cart = (props) => {
       price={item.price}
       key={item.id}
       src={item.src}
+      restaurant={item.restaurant}
       onAdd={onAddHandler.bind(null, item)}
       onRemove={onRemoveHandler.bind(null, item.id)}
     />
@@ -58,7 +59,7 @@ const Cart = (props) => {
         <div className={classes.item_group}>{cartItems}</div>
 
         <div className={`${classes.amount} `}>
-          <p>Total Amount</p>
+          <p>Subtotal</p>
           <p>{totalAmount}</p>
         </div>
         <div className={classes.buttons}>
@@ -66,12 +67,12 @@ const Cart = (props) => {
             onClick={props.onCloseCart}
             className={` ${classes.btn_style} me-2`}
           >
-            Close
+            Cerrar
           </TheButton>
           {/* Hiding the order button if there is no item in the cart using the hasitems variable as a condition */}
           {hasItems && (
-            <TheButton className={classes.btn_style2} onClick={props.onOrder}>
-              Order
+            <TheButton to="/order" className={classes.btn_style2} onClick={props.onCloseCart}>
+              Continuar
             </TheButton>
           )}
           {/* ENDS */}

@@ -1,0 +1,40 @@
+
+
+.containerDetailsCard {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+}
+
+.box {
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.boxSmInitial {
+    overflow: initial;
+}
+
+.innerBox {
+    position: absolute;
+    display: block;
+    width: 1px;
+    left: 500px;
+    top: -24px;
+    bottom: -24px;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    resize: horizontal;
+}
+
+.card>* {
+    --stack-point: 800px;
+    min-width: clamp(0px,
+            calc(var(--stack-point) - 2 * var(--Card-padding) - 2 * var(--variant-borderWidth, 0px)) + 1px - 100%,
+            100%);
+}

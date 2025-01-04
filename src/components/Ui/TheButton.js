@@ -5,20 +5,21 @@ import classes from "./TheButton.module.css";
 const TheButton = (props) => {
   const navigate = useNavigate();  
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    if (props.onClick) {
+      props.onClick(e);  
+    }
     if (props.to) {
       navigate(props.to); 
-    }
-    if (props.onClick) {
-      props.onClick();  
     }
   };
 
   return (
     <button
       className={`${classes.button} ${props.className}`}
-      type={props.type}
+      type={props.type || "button"} 
       onClick={handleClick}  
+      disabled={props.disabled} 
     >
       {props.children}
     </button>
