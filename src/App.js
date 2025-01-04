@@ -14,6 +14,8 @@ import Error from "./components/Error/Error";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Restaurants from "./components/Restaurants/Restaurants";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import Menu from "./components/Menu/Menu"
+import Order from "./components/Order/Order"
 import Swal from "sweetalert2";
 
 const App = () => {
@@ -58,6 +60,8 @@ const App = () => {
             <Route path="/signup/:id" element={<SignUpTwo />} />
             <Route path="/error" element={<Error />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/order" element={<Order />} />
 
             <Route
               path="/profile"
@@ -78,7 +82,7 @@ const App = () => {
 
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>
-
+          
           <TheFooter />
         </Router>
       </CartProvider>

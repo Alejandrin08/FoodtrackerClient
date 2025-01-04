@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./NavCartButton.module.css";
 import CartContext from "../store/cartcontext";
 
-const NavCartButton = (props) => {
+const NavCartButton = (details) => {
   //Using useContext & useState hooks
   const cartCtx = useContext(CartContext);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -44,7 +44,7 @@ const NavCartButton = (props) => {
 
   //Rendering the Cart button on the DOM
   return (
-    <div onClick={props.onClick} className={btnBump}>
+    <div onClick={details.onClick} className={btnBump}>
       <i className="bi bi-cart"></i>
       Cart
       <div className={classes.badge}>{numberOfCartItems}</div>
