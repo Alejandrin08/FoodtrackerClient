@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Autocomplete } from "@react-google-maps/api";
+import { GoogleMap, Autocomplete } from "@react-google-maps/api";
 import classes from "./MapSection.module.css";
 
 const center = {
@@ -9,8 +9,10 @@ const center = {
 
 const MapSection = () => {
   const [selectedLocation, setSelectedLocation] = useState(center);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
+  const markerRef = useRef(null);
 
   const handlePlaceChanged = () => {
     const place = autocompleteRef.current.getPlace();
@@ -24,26 +26,30 @@ const MapSection = () => {
   };
 
   useEffect(() => {
-    if (mapRef.current) {
-      const map = mapRef.current.state.map;
+    if (mapRef.current && mapLoaded) {
+      const map = mapRef.current;
 
-      if (mapRef.current.advancedMarker) {
-        mapRef.current.advancedMarker.map = null;
+      if (window.google && window.google.maps) {
+        if (markerRef.current) {
+          markerRef.current.setMap(null);
+        }
+
+        const marker = new window.google.maps.Marker({
+          map,
+          position: selectedLocation,
+          title: "Ubicación seleccionada",
+        });
+
+        markerRef.current = marker;
+      } else {
+        console.error("La API de Google Maps no está disponible correctamente");
       }
-
-      const advancedMarker = new window.google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: selectedLocation,
-        title: "Ubicación seleccionada",
-      });
-
-      mapRef.current.advancedMarker = advancedMarker;
     }
-  }, [selectedLocation]);
+  }, [selectedLocation, mapLoaded]);
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={["places", "marker"]}>
-      <div className={classes.containerSection}>
+    <div className={classes.containerSection}>
+      <div className={classes.autocompleteWrapper}>
         <Autocomplete
           onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
           onPlaceChanged={handlePlaceChanged}
@@ -55,7 +61,6 @@ const MapSection = () => {
           />
         </Autocomplete>
       </div>
-      <div className={classes.containerSection}>
       <GoogleMap
         mapContainerClassName={classes.mapContainer}
         center={selectedLocation}
@@ -64,11 +69,11 @@ const MapSection = () => {
           mapId: "26719770e22e2761",
         }}
         onLoad={(map) => {
-          mapRef.current = { state: { map } };
+          mapRef.current = map;
+          setMapLoaded(true);
         }}
       />
     </div>
-    </LoadScript >
   );
 };
 

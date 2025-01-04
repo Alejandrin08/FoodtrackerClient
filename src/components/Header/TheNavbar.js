@@ -36,7 +36,6 @@ const TheNavbar = (details) => {
         setUserRole(decodedToken.roles);
         setIsLoggedIn(true);
       } catch (error) {
-        console.error("Error decodificando el token:", error);
         setIsLoggedIn(false);
       }
     }
@@ -124,7 +123,7 @@ const TheNavbar = (details) => {
                       Modificar Cuenta
                     </Link>
                     {userRole === "ROLE_OWNER" && (
-                      <Link to="/edit-restaurant" className={classes.dropdownItem}>
+                      <Link to="/edit-restaurant" className={classes.dropdownItem} >
                         Modificar Restaurante
                       </Link>
                     )}

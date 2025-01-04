@@ -16,4 +16,40 @@ export const register = async (email, password) => {
     } catch (error) {
         throw new Error("Error en el registro");
     }
-}
+};
+
+export const validateEmail = async (email) => {
+    try {
+        const response = await api.get(`/account/email/${email}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al validar el correo");
+    }
+};
+
+export const updatePassword = async (email, password) => {
+    try {
+        const response = await api.put("/account/", { email, password });
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al actualizar la contraseña");
+    }
+};
+
+export const updateEmail = async (id, email) => {
+    try {
+        const response = await api.put(`/account/${id}`, { email });
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al actualizar el correo");
+    }
+};
+
+export const getAccount = async (id) => {
+    try {
+        const response = await api.get(`/account/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al obtener la cuenta");
+    }
+};

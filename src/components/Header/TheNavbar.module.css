@@ -38,21 +38,28 @@
   position: absolute;
   border-radius: 10px;
   background-color: var(--primaryitemcolor);
-  min-width: 160px;
+  min-width: 200px; 
   z-index: 1;
+  padding: 0;
 }
 
 .dropdownContent .dropdownItem {
   color: white;
   padding: 10px;
   text-decoration: none;
-  border: none; 
-  background-color: var(--secondarybackground); 
+  border: none;
+  background-color: var(--secondarybackground);
+  display: block; 
+  width: 100%; 
+}
+
+.selectedItem {
+  background-color: var(--primarybackground); 
+  color: var(--light); 
 }
 
 .dropdownContent .dropdownItem:hover {
-  background-color: var(--secondaryitemcolor);
-  color: var(--light);
+  color: var(--dark);
   text-decoration: none;
 }
 
