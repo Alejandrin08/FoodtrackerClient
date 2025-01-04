@@ -26,3 +26,12 @@ export const getRestaurantsByCategory = async (category) => {
         throw new Error(`Error al obtener restaurantes de la categoría ${category}`);
     }
 };
+
+export const getAllRestaurantsLocation = async () => {
+    try {
+        const response = await api.get("/restaurant/location");
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al obtener los restaurantes");
+    }
+}

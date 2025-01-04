@@ -6,7 +6,7 @@ import CategorySelector from "./CategorySelector";
 import ScheduleSelector from "./ScheduleSelector";
 import LocationInput from "./Map";
 import TheButton from "../Ui/TheButton";
-import useRegisterRestaurant from "../../hooks/useRegisterRestaurant";
+import useRegisterRestaurant from "../../hooks/useRestaurant";
 import styles from "./RegisterRestaurant.module.css";
 
 const RestaurantRegistrationForm = () => {
