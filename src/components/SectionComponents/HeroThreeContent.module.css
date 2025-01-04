@@ -6,6 +6,11 @@
   text-align: center;
 }
 
+.item .item_image {
+  width: 150px;
+  height: auto;
+}
+
 .dish_content .dish_text_div {
   text-align: center;
   font-weight: 700;
@@ -22,9 +27,11 @@
   margin-top: 20px;
 }
 
-.dish_content .dish_price_div p {
-  font-size: 22px;
-  font-weight: 500;
+.dish_img {
+  width: 150px; /* Define el ancho */
+  height: 150px; /* Mantiene la relación de aspecto */
+  border-radius: 50%; /* Opcional: para esquinas redondeadas */
+  object-fit: cover; 
 }
 
 @media only screen and (max-width: 991px) {
