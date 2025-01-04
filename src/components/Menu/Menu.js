@@ -13,6 +13,8 @@ const Menu = () => {
     
     const [localData, setLocalData] = useState(null);
     
+
+    
     // Recuperamos la data del localStorage al cargar el componente
     useEffect(() => {
         const storedData = localStorage.getItem("restaurantData");
@@ -22,9 +24,8 @@ const Menu = () => {
     }, []);
 
     const { data } = location.state || { data: localData };
-
     const { loading, error, menu } = useMenu(data?.restaurantName || "");
-
+    
     useEffect(() => {
         if (data && !localData) {
             // Guardar los datos en el localStorage si no están ya almacenados
@@ -86,7 +87,7 @@ const Menu = () => {
                     <MenuCards
                         key={menu.id}
                         details={menu}
-                        restaurantName = {data.restaurantName}
+                        restaurantId = {data.id}
                     />
                 ))}
             </div>
