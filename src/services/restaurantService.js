@@ -34,7 +34,6 @@ export const getAllRestaurantsLocation = async () => {
     } catch (error) {
         throw new Error("Error al obtener los restaurantes");
     }
-<<<<<<< HEAD
 };
 
 export const getRestaurantOwner = async () => {
@@ -44,7 +43,7 @@ export const getRestaurantOwner = async () => {
     } catch (error) {
         throw new Error("Error al obtener el restaurante");
     }
-}
+};
 
 export const updateRestaurantOwner = async (restaurantData) => {
     try {
@@ -53,9 +52,8 @@ export const updateRestaurantOwner = async (restaurantData) => {
     } catch (error) {
         throw new Error("Error al actualizar el restaurante");
     }
-}
-=======
-}
+};
+
 
 export const registerRating = async (restaurantName, rate) => {
     try{
@@ -64,6 +62,4 @@ export const registerRating = async (restaurantName, rate) => {
     }catch{
         throw new Error(`Error al registrar el rating de ${restaurantName}`)
     }
-}
-
->>>>>>> PalomaBranch
+};
