@@ -3,7 +3,7 @@ import { Row, Container, Col } from "react-bootstrap";
 import TheButton from "../Ui/TheButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import classes from "./HeroFourSection.module.css";
-import aboutImage from "../../assets/image/about-image.webp";
+import aboutImage from "../../assets/image/about-image.png";
 import Modal from "../Ui/Modal";
 
 const HeroFourSection = () => {

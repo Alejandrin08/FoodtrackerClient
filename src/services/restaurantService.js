@@ -34,6 +34,7 @@ export const getAllRestaurantsLocation = async () => {
     } catch (error) {
         throw new Error("Error al obtener los restaurantes");
     }
+<<<<<<< HEAD
 };
 
 export const getRestaurantOwner = async () => {
@@ -53,3 +54,16 @@ export const updateRestaurantOwner = async (restaurantData) => {
         throw new Error("Error al actualizar el restaurante");
     }
 }
+=======
+}
+
+export const registerRating = async (restaurantName, rate) => {
+    try{
+        const response = await api.post(`/rating/${restaurantName}`, {rate});
+        return response.data;
+    }catch{
+        throw new Error(`Error al registrar el rating de ${restaurantName}`)
+    }
+}
+
+>>>>>>> PalomaBranch

@@ -128,6 +128,11 @@ const TheNavbar = (details) => {
                         Modificar Restaurante
                       </Link>
                     )}
+                    {userRole === "ROLE_OWNER" && (
+                      <Link to="/edit-menu" className={classes.dropdownItem} >
+                        Mis menús
+                      </Link>
+                    )}
                     {userRole === "ROLE_CLIENT" && (
                       <Link to="/register-restaurant" className={classes.dropdownItem}>
                         Registrar Restaurante

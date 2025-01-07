@@ -85,7 +85,7 @@ const RestaurantRegistrationForm = () => {
                 text: "El restaurante fue registrado exitosamente.",
                 icon: "success"
             }).then(() => {
-                navigate("/");
+                navigate("/register-menu");
             });
         } else {
             Swal.fire({

@@ -4,7 +4,7 @@ import classes from "./HeroSection.module.css";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-scroll";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FoodImage from "../../assets/image/FoodImage.webp";
+import FoodImage from "../../assets/image/foodImage.png";
 
 const HeroSection = () => {
   //Rendering the Hero section(Landing page) on the DOM
