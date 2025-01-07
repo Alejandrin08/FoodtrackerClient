@@ -18,6 +18,8 @@ import Menu from "./components/Menu/Menu"
 import Order from "./components/Order/Order"
 import Swal from "sweetalert2";
 import RegisterRestaurant from "./components/RegisterRestaurant/RegisterRestaurant";
+import RegisterMenu from "./components/RegisterMenu/RegisterMenu";
+import EditMenu from "./components/EditMenu/EditMenu"
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -70,6 +72,22 @@ const App = () => {
               }
             />
             <Route
+              path="/register-menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <RegisterMenu />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <EditMenu />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/restaurants"
               element={
                 <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
@@ -84,7 +102,8 @@ const App = () => {
                   <RegisterRestaurant />
                 </ProtectedRoute>
               }
-            />            <Route
+            />            
+            <Route
               path="/menu"
               element={
                 <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>

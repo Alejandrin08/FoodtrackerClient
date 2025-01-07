@@ -35,3 +35,13 @@ export const getAllRestaurantsLocation = async () => {
         throw new Error("Error al obtener los restaurantes");
     }
 }
+
+export const registerRating = async (restaurantName, rate) => {
+    try{
+        const response = await api.post(`/rating/${restaurantName}`, {rate});
+        return response.data;
+    }catch{
+        throw new Error(`Error al registrar el rating de ${restaurantName}`)
+    }
+}
+

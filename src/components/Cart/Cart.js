@@ -56,6 +56,7 @@ const Cart = (props) => {
       key={item.id}
       src={item.src}
       restaurant={item.restaurant}
+      nameRestaurant={item.nameRestaurant}
       onAdd={onAddHandler.bind(null, item)}
       onRemove={onRemoveHandler.bind(null, item.id)}
       clearCart={onClearHandler.bind(null, null)}
