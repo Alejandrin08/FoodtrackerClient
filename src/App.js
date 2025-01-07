@@ -16,6 +16,7 @@ import Restaurants from "./components/Restaurants/Restaurants";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Menu from "./components/Menu/Menu"
 import Order from "./components/Order/Order"
+import EditRestaurant from "./components/EditRestaurant/EditRestaurant";
 import Swal from "sweetalert2";
 import RegisterRestaurant from "./components/RegisterRestaurant/RegisterRestaurant";
 
@@ -100,7 +101,14 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-
+            <Route
+              path="/edit-restaurant"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <EditRestaurant />
+                </ProtectedRoute>
+              }
+            />
 
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>

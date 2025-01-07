@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerRestaurant, getAllRestaurantsLocation } from "../services/restaurantService";
+import { registerRestaurant, getAllRestaurantsLocation, getRestaurantOwner } from "../services/restaurantService";
 
 const useRegisterRestaurant = () => {
     const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const useRegisterRestaurant = () => {
         setLoading(true);
 
         try {
-            const locations = await getAllRestaurantsLocation(); 
+            const locations = await getAllRestaurantsLocation();
 
             return { success: true, locations };
         } catch (err) {
@@ -33,9 +33,23 @@ const useRegisterRestaurant = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    return { loading, register, getAllLocation };
+    const getRestaurant = async () => {
+        setLoading(true);
+
+        try {
+            const restaurant = await getRestaurantOwner();
+
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { loading, register, getAllLocation, getRestaurant };
 };
 
 export default useRegisterRestaurant;
