@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Restaurants.module.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
+import { Container, Row } from "react-bootstrap";
 import useRestaurant from "../../hooks/useGetRestaurants";
 
 const Restaurants = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const { loading, error, restaurants } = useRestaurant(selectedCategory);
+    const [selectedCategory, setSelectedCategory] = useState(null); const { loading, error, restaurants } = useRestaurant(selectedCategory);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -13,11 +13,10 @@ const Restaurants = () => {
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category === selectedCategory ? null : category);
-        console.log(restaurants);
     };
 
     return (
-        <div className={styles.restaurantsContainer}>
+        <Container fluid className={styles.restaurantsContainer}>
             <div className={styles.slider}>
                 <div
                     className={`${styles.sliderCircle} ${selectedCategory === "Hamburguesas" ? styles.active : ""}`}
@@ -49,29 +48,29 @@ const Restaurants = () => {
                 </div>
             </div>
 
-            <div className="container-auto mt-5">
-                <h2 className="mb-5">Restaurantes</h2>
+            <h2 className="mt-4 mb-4 text-center">Restaurantes</h2>
 
-                {loading && <p>Cargando restaurantes...</p>}
-                {error && <p>{error}</p>}
+            {loading && <p className="text-center">Cargando restaurantes...</p>}
+            {error && <p className="text-center text-danger">{error}</p>}
 
-                {!loading && !error && restaurants.length === 0 && (
-                    <p>No se encontraron restaurantes para esta categoría.</p>
-                )}
+            {!loading && !error && restaurants.length === 0 && (
+                <p className="text-center">No se encontraron restaurantes para esta categoría.</p>
+            )}
 
-                <div className="row justify-content-center gap-3">
-                    {restaurants.map((restaurant) => (
-                        <RestaurantCard
-                            key={restaurant.id}
-                            data={restaurant}
-                            restaurantName={restaurant.restaurantName}
-                            imageUrl={restaurant.imageUrl}
-                            averageRating={restaurant.averageRating}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
+
+            <Row xs={1} sm={2} md={3} lg={4} xl={5} className="g-4">
+                {restaurants.map((restaurant) => (
+                    <RestaurantCard
+                        key={restaurant.id}
+                        id={restaurant.id}
+                        data={restaurant}
+                        restaurantName={restaurant.restaurantName}
+                        imageUrl={restaurant.imageUrl}
+                        averageRating={restaurant.averageRating}
+                    />
+                ))}
+            </Row>
+        </Container >
     );
 };
 

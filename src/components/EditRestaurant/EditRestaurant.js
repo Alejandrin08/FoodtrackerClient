@@ -6,6 +6,7 @@ import LocationInput from "./Map";
 import TheButton from "../Ui/TheButton";
 import useRestaurant from "../../hooks/useRestaurant";
 import styles from "./EditRestaurant.module.css";
+import Swal from "sweetalert2";
 
 const EditRestaurant = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const EditRestaurant = () => {
 
     const [errors, setErrors] = useState({});
     const [touched, setTouched] = useState({});
-    const { getRestaurant } = useRestaurant();
+    const { getRestaurant, updateRestaurant } = useRestaurant();
 
     useEffect(() => {
         const fetchRestaurantDetails = async () => {
@@ -100,7 +101,36 @@ const EditRestaurant = () => {
 
         setLoading(true);
         try {
-            console.log("Datos enviados:", formData);
+            const { success } = await updateRestaurant({
+                schedule: formData.schedule,
+                phoneNumber: formData.phoneNumber,
+                location: formData.location,
+                imageUrl: formData.imageUrl,
+            });
+
+            if (success) {
+                Swal.fire({
+                    title: "Restaurante modificado",
+                    text: "El restaurante fue modificado exitosamente.",
+                    icon: "success"
+                }).then(() => {
+                    navigate("/");
+                });
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un error al modificar el restaurante. Por favor, inténtalo nuevamente.",
+                    icon: "error"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: "Hubo un error al modificar el restaurante. Por favor, inténtalo nuevamente.",
+                icon: "error"
+            }).then(() => {
+                navigate("/");
+            });
         } finally {
             setLoading(false);
         }

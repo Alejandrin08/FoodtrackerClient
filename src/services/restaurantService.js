@@ -44,3 +44,12 @@ export const getRestaurantOwner = async () => {
         throw new Error("Error al obtener el restaurante");
     }
 }
+
+export const updateRestaurantOwner = async (restaurantData) => {
+    try {
+        const response = await api.put("/restaurant/", restaurantData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al actualizar el restaurante");
+    }
+}

@@ -19,6 +19,7 @@ import Order from "./components/Order/Order"
 import EditRestaurant from "./components/EditRestaurant/EditRestaurant";
 import Swal from "sweetalert2";
 import RegisterRestaurant from "./components/RegisterRestaurant/RegisterRestaurant";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);

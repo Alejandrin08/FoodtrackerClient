@@ -33,10 +33,10 @@ const ScheduleSelector = ({ schedule, onScheduleChange }) => {
 
   useEffect(() => {
     const transformedSchedule = days.reduce((acc, day) => {
-      if (schedule[day]) {
+      if (typeof schedule[day] === 'string' && schedule[day].includes('-')) {
         const [open, close] = schedule[day].split('-');
         acc[day] = { open, close };
-      } else if (!localSchedule[day]) {
+      } else {
         acc[day] = null;
       }
       return acc;
@@ -45,14 +45,21 @@ const ScheduleSelector = ({ schedule, onScheduleChange }) => {
     setLocalSchedule((prev) => ({ ...prev, ...transformedSchedule }));
   }, [schedule]);
 
-
   const handleHourChange = (day, type, value) => {
     setLocalSchedule((prev) => {
-      const newSchedule = {
-        ...prev,
-        [day]: { ...prev[day], [type]: value },
-      };
-      onScheduleChange(newSchedule);
+      const updatedDaySchedule = { ...prev[day], [type]: value };
+
+      const newSchedule = { ...prev, [day]: updatedDaySchedule };
+
+      onScheduleChange(
+        Object.keys(newSchedule).reduce((acc, key) => {
+          if (newSchedule[key]) {
+            acc[key] = `${newSchedule[key].open}-${newSchedule[key].close}`;
+          }
+          return acc;
+        }, {})
+      );
+
       return newSchedule;
     });
   };
@@ -66,7 +73,7 @@ const ScheduleSelector = ({ schedule, onScheduleChange }) => {
               type="switch"
               id={`switch-${day}`}
               label={day}
-              checked={!!localSchedule[day]}
+              checked={!!localSchedule[day]} // Depende solo de localSchedule
               onChange={() => handleDayToggle(day)}
             />
           </Col>
