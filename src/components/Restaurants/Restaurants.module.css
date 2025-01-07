@@ -1,22 +1,14 @@
 .restaurantsContainer {
-    display: flex;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-bottom: 30px;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: 100vh;
-    color: var(--primaryitemcolor);
-    flex-wrap: wrap;
-}
-
-.row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100vh;
+    overflow-x: auto;
 }
 
 .slider {
@@ -57,8 +49,8 @@
 }
 
 .sliderCircle span {
-    font-size: 14px; 
-    margin-top: 80px; 
+    font-size: 14px;
+    margin-top: 80px;
 }
 
 .sliderCircle {
@@ -73,6 +65,6 @@
 }
 
 .sliderCircle.active {
-    background-color: var(--primaryitemcolor); 
+    background-color: var(--primaryitemcolor);
     color: #fff;
 }

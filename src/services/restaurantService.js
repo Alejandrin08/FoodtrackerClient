@@ -34,4 +34,22 @@ export const getAllRestaurantsLocation = async () => {
     } catch (error) {
         throw new Error("Error al obtener los restaurantes");
     }
+};
+
+export const getRestaurantOwner = async () => {
+    try {
+        const response = await api.get("/restaurant/owner");
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al obtener el restaurante");
+    }
+}
+
+export const updateRestaurantOwner = async (restaurantData) => {
+    try {
+        const response = await api.put("/restaurant/", restaurantData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Error al actualizar el restaurante");
+    }
 }

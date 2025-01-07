@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerRestaurant, getAllRestaurantsLocation } from "../services/restaurantService";
+import { registerRestaurant, getAllRestaurantsLocation, getRestaurantOwner, updateRestaurantOwner } from "../services/restaurantService";
 
 const useRegisterRestaurant = () => {
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,6 @@ const useRegisterRestaurant = () => {
 
             return { success: true, restaurant };
         } catch (err) {
-            console.error(err.message || "Error al registrar el restaurante");
             return { success: false };
         } finally {
             setLoading(false);
@@ -25,7 +24,7 @@ const useRegisterRestaurant = () => {
         setLoading(true);
 
         try {
-            const locations = await getAllRestaurantsLocation(); 
+            const locations = await getAllRestaurantsLocation();
 
             return { success: true, locations };
         } catch (err) {
@@ -33,9 +32,36 @@ const useRegisterRestaurant = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    return { loading, register, getAllLocation };
+    const getRestaurant = async () => {
+        setLoading(true);
+
+        try {
+            const restaurant = await getRestaurantOwner();
+
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const updateRestaurant = async (restaurantData) => {
+        setLoading(true);
+
+        try {
+            const restaurant = await updateRestaurantOwner(restaurantData);
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { loading, register, getAllLocation, getRestaurant, updateRestaurant };
 };
 
 export default useRegisterRestaurant;
