@@ -9,12 +9,11 @@ import Typography from '@mui/joy/Typography';
 import classes from "./MenuCard.module.css";
 import TheButton from "../Ui/TheButton";
 import Modal from "../Ui/Modal";
-import Alert from "react-bootstrap/Alert";
+import Swal from "sweetalert2";
 import CartContext from "../store/cartcontext";
 
-const MenuCard = ({ details, restaurantId }) => {
+const MenuCard = ({ details, restaurantId, restaurantName }) => {
     const [showModal, setShowModal] = useState(false);
-    const [showAlertModal, setShowAlertModal] = useState(false);
 
     const aboutModal = () => {
         setShowModal(true);
@@ -34,7 +33,11 @@ const MenuCard = ({ details, restaurantId }) => {
             if (hasRestaurant) {
                 onAddToCartHandler();
             } else {
-                setShowAlertModal(true);
+                Swal.fire({
+                    title: "Aviso",
+                    text: `El restaurante del nuevo platillo no coincide con los existentes en el carrito. Solo puede tener un carrito por restaurante.`,
+                    icon: "warning"
+                });
             }
         } else {
             onAddToCartHandler();
@@ -50,6 +53,7 @@ const MenuCard = ({ details, restaurantId }) => {
             price: details.price,
             src: details.imageUrl,
             restaurant: restaurantId,
+            nameRestaurant: restaurantName
         });
     };
     return (
@@ -75,17 +79,6 @@ const MenuCard = ({ details, restaurantId }) => {
                         </div>
                     </div>
                 </Modal>
-            )}
-
-            {showAlertModal && (
-                
-                    <Alert
-                        variant="warning"
-                        onClose={() => setShowAlertModal(false)}
-                        dismissible
-                    >
-                        El restaurante del nuevo platillo no coincide con los existentes en el carrito. Solo puede tener un carrito por restaurante.
-                    </Alert>
             )}
 
             <Card sx={{ width: 300, maxWidth: '100%', boxShadow: 'lg' }} style={{ marginTop: '1rem', marginBottom: '2rem' }}>

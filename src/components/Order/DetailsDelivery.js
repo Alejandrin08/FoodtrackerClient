@@ -1,30 +1,26 @@
 import React, { useContext, useState } from 'react';
 import styles from './DetailsDelivery.module.css';
 import MapSection from "./AddressMap";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import CartContext from "../store/cartcontext";
 
 const DetailsDelivery = () => {
   const [paymentMethod, setPaymentMethod] = useState('tarjeta');
   const [addressSelected, setAddressSelected] = useState(false);
-  const navigate = useNavigate();
   const cartCtx = useContext(CartContext);
+  const nameRestaurant = cartCtx.items[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem("rating", nameRestaurant.nameRestaurant);
     Swal.fire({
       title: "Pedido realizado con éxito",
       text: "El restaurante te enviará tu pedido lo mas pronto posible.",
       icon: "success",
     }).then(() => {
-      
-      navigate("/");
-      setTimeout(() => {
-        cartCtx.clearCart(); 
-      }, 100);
+      window.location.replace("/");
     });
-    
+
   };
 
   const handleAddressChange = (isSelected) => {
@@ -53,10 +49,15 @@ const DetailsDelivery = () => {
                   name="formaPago"
                   id="tarjeta"
                   value="tarjeta"
+
                   checked={paymentMethod === 'tarjeta'}
                   onChange={() => setPaymentMethod('tarjeta')}
                 />
-                <label className={`btn btn-outline-primary ${styles.paymentButton}`} htmlFor="tarjeta">
+                <label className={`btn btn-outline-primary ${styles.paymentButton} `} style={{
+                  backgroundColor: paymentMethod === 'tarjeta' ? '#ff4d00' : '',
+                  color: paymentMethod === 'tarjeta' ? 'white' : 'black',
+                  borderColor: paymentMethod === 'tarjeta' ? '#ff4d00' : '#cccccc'
+                }} htmlFor="tarjeta">
                   Tarjeta
                 </label>
                 <input
@@ -68,7 +69,11 @@ const DetailsDelivery = () => {
                   checked={paymentMethod === 'efectivo'}
                   onChange={() => setPaymentMethod('efectivo')}
                 />
-                <label className={`btn btn-outline-primary ${styles.paymentButton}`} htmlFor="efectivo">
+                <label className={`btn btn-outline-primary ${styles.paymentButton} `} style={{
+                  backgroundColor: paymentMethod === 'efectivo' ? '#ff4d00' : '',
+                  color: paymentMethod === 'efectivo' ? 'white' : 'black',
+                  borderColor: paymentMethod === 'efectivo' ? '#ff4d00' : '#cccccc'
+                }} htmlFor="efectivo">
                   Efectivo
                 </label>
               </div>
@@ -80,7 +85,5 @@ const DetailsDelivery = () => {
     </div >
   );
 }
-
-
 
 export default DetailsDelivery;

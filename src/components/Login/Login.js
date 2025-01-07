@@ -29,7 +29,7 @@ const Login = () => {
                 <div className={styles.cardContent}>
                     <div className={styles.leftPanel}>
                         <img
-                            src="https://www.listchallenges.com/f/lists/602ba23e-9d6c-4cdc-bedf-12931d6d808e.jpg"
+                            src="https://www.pizzaiolo.mx/img/blog/grupo-de-pizzas-en-restaurante-Pizza-popular.jpg0"
                             alt="Login Illustration"
                             className={`mb-6 ${styles.img}`}
                         />
