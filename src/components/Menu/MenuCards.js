@@ -12,7 +12,7 @@ import Modal from "../Ui/Modal";
 import Swal from "sweetalert2";
 import CartContext from "../store/cartcontext";
 
-const MenuCard = ({ details, restaurantId, restaurantName }) => {
+const MenuCard = ({ details, restaurantId, restaurantName, status }) => {
     const [showModal, setShowModal] = useState(false);
 
     const aboutModal = () => {
@@ -119,7 +119,7 @@ const MenuCard = ({ details, restaurantId, restaurantName }) => {
                             '&:hover': {
                                 backgroundColor: '#cc4526',
                             },
-                        }}>
+                        }} disabled={!status} >
                         <i className="bi bi-plus"></i> Agregar al carrito
                     </Button>
 

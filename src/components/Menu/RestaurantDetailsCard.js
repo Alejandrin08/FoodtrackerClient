@@ -8,27 +8,9 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
 
-const RestaurantDetailsCard = ({ data }) => {
+const RestaurantDetailsCard = ({ data, status }) => {
 
-    const getCurrentDay = () => {
-        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-        return days[new Date().getDay()];
-    };
-
-    console.log(data.schedule);
-
-    const isOpen = (schedule) => {
-        const currentDay = getCurrentDay();
-        const currentTime = new Date().toTimeString().slice(0, 5); // Hora actual en formato HH:mm
-
-        if (!schedule[currentDay]) return "Cerrado hoy";
-
-        const [openingTime, closingTime] = schedule[currentDay].split("-");
-        if (currentTime >= openingTime && currentTime <= closingTime) {
-            return `Abierto, cierra a las ${closingTime}`;
-        }
-        return "Cerrado";
-    };
+    
     return (
         <div className="container-sm " style={{ marginTop: '6rem', marginBottom: '2rem' }}>
             <Box
@@ -110,7 +92,7 @@ const RestaurantDetailsCard = ({ data }) => {
                                 <Typography level="body-sm" sx={{ fontWeight: 'bold' }}>
                                     <i className="fa-solid fa-circle"></i> Estado
                                 </Typography>
-                                <Typography sx={{ fontWeight: 'medium', fontSize: 'lg' }}>{isOpen (data.schedule)}</Typography>
+                                <Typography sx={{ fontWeight: 'medium', fontSize: 'lg' }}>{status}</Typography>
                             </div>
                         </Sheet>
                     </CardContent>
