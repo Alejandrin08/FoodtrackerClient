@@ -8,34 +8,76 @@ import useMenu from "../../hooks/useMenu";
 const Menu = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    
+    const [status, setStatus] = useState(false);
+
     const [localData, setLocalData] = useState(null);
-    
+
+    const getCurrentDay = () => {
+        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        return days[new Date().getDay()];
+    };
+
+
     useEffect(() => {
         const storedData = localStorage.getItem("restaurantData");
         if (storedData) {
-            setLocalData(JSON.parse(storedData)); 
+            setLocalData(JSON.parse(storedData));
         }
     }, []);
 
     const { data } = location.state || { data: localData };
     const { loading, error, menu } = useMenu(data?.restaurantName || "");
-    
+
     useEffect(() => {
         if (data && !localData) {
             localStorage.setItem("restaurantData", JSON.stringify(data));
         }
 
         if (!data) {
-            navigate("/restaurants"); 
+            navigate("/restaurants");
         } else {
             window.scrollTo(0, 0);
         }
     }, [data, localData, navigate]);
 
+    useEffect(() => {
+        if (data?.schedule) {
+            const currentDay = getCurrentDay();
+            const currentTime = new Date().toTimeString().slice(0, 5);
+            const schedule = data.schedule[currentDay];
+
+            if (schedule) {
+                const [openingTime, closingTime] = schedule.split("-");
+                setStatus(currentTime >= openingTime && currentTime <= closingTime);
+            } else {
+                setStatus(false); // Si no hay horario para el día actual
+            }
+        }
+    }, [data]); // Solo se ejecuta cuando cambien `data`
+
     if (!data) {
-        return null; 
+        return null;
     }
+
+
+
+    const isOpen = (schedule) => {
+        const currentDay = getCurrentDay();
+        const currentTime = new Date().toTimeString().slice(0, 5); // Hora actual en formato HH:mm
+
+        if (!schedule[currentDay]) return "Cerrado hoy";
+
+        const [openingTime, closingTime] = schedule[currentDay].split("-");
+        if (currentTime >= openingTime && currentTime <= closingTime) {
+
+            return `Abierto, cierra a las ${closingTime}`;
+        }
+        return "Cerrado";
+
+    };
+
+
+
 
     return (
         <div className="container-sm mt-5">
@@ -43,6 +85,7 @@ const Menu = () => {
                 <RestaurantDetailsCard
                     key={data.id}
                     data={data}
+                    status={isOpen(data.schedule)}
                 />
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -64,8 +107,9 @@ const Menu = () => {
                     <MenuCards
                         key={menu.id}
                         details={menu}
-                        restaurantId = {data.id}
+                        restaurantId={data.id}
                         restaurantName={data.restaurantName}
+                        status={status}
                     />
                 ))}
             </div>
