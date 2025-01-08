@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DishList from './DishListMenu';
 import Divider from '@mui/material/Divider';
 import useMenu from "../../hooks/useMenu";
+import useRestaurant from "../../hooks/useRestaurant";
 import Swal from "sweetalert2";
 import useEditMenu from "../../hooks/useEditMenu";
 import DishModal from './DishModal';
@@ -9,15 +10,18 @@ import useRegisterMenu from "../../hooks/useRegisterMenu";
 
 const Menu = () => {
 
-    const { loading, error, menu } = useMenu("El tunel" || "");
+    
     const [dishList, setDishList] = useState([]);
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalAdd, setShowModalAdd] = useState(false);
     const [dishToEdit, setDishToEdit] = useState(null);
     const [newDishEdit, setNewDishEdit] = useState(null);
     const [hasChanges, setHasChanges] = useState(false);
+    const { getRestaurant } = useRestaurant();
     const { deleteDishFromMenu, editDishFromMenu } = useEditMenu();
+
     const { register } = useRegisterMenu();
+    const [restaurantName, setRestaurantName] = useState("");
     const [dish, setDish] = useState({
         dish: '',
         price: '',
@@ -25,6 +29,19 @@ const Menu = () => {
         description: ''
     });
 
+    useEffect(() => {
+        const fetchRestaurantName = async () => {
+            const { success, restaurant } = await getRestaurant();
+            if (success && restaurant) {
+                setRestaurantName(restaurant.restaurantName);
+            }
+        };
+    
+        fetchRestaurantName();
+    }, []);
+    
+    const { loading, error, menu } = useMenu(restaurantName || "");
+    
     useEffect(() => {
         if (!loading && !error) {
             setDishList(menu);
