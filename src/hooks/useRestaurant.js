@@ -1,35 +1,67 @@
-import { useState, useEffect } from "react";
-import { getAllRestaurants, getRestaurantsByCategory } from "../services/restaurantService";
+import { useState } from "react";
+import { registerRestaurant, getAllRestaurantsLocation, getRestaurantOwner, updateRestaurantOwner } from "../services/restaurantService";
 
-const useRestaurant = (selectedCategory) => {
+const useRegisterRestaurant = () => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [restaurants, setRestaurants] = useState([]);
 
-    useEffect(() => {
-        const fetchRestaurants = async () => {
-            setLoading(true);
-            setError(null);
+    const register = async (restaurantData) => {
+        setLoading(true);
 
-            try {
-                let data;
-                if (selectedCategory) {
-                    data = await getRestaurantsByCategory(selectedCategory);
-                } else {
-                    data = await getAllRestaurants();
-                }
-                setRestaurants(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+        try {
+            const { restaurant, newToken } = await registerRestaurant(restaurantData);
 
-        fetchRestaurants();
-    }, [selectedCategory]); 
+            localStorage.setItem("authToken", newToken);
 
-    return { loading, error, restaurants };
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getAllLocation = async () => {
+        setLoading(true);
+
+        try {
+            const locations = await getAllRestaurantsLocation();
+
+            return { success: true, locations };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getRestaurant = async () => {
+        setLoading(true);
+
+        try {
+            const restaurant = await getRestaurantOwner();
+
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const updateRestaurant = async (restaurantData) => {
+        setLoading(true);
+
+        try {
+            const restaurant = await updateRestaurantOwner(restaurantData);
+            return { success: true, restaurant };
+        } catch (err) {
+            return { success: false };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { loading, register, getAllLocation, getRestaurant, updateRestaurant };
 };
 
-export default useRestaurant;
+export default useRegisterRestaurant;

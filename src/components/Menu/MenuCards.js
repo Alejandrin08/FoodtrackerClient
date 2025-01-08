@@ -9,12 +9,11 @@ import Typography from '@mui/joy/Typography';
 import classes from "./MenuCard.module.css";
 import TheButton from "../Ui/TheButton";
 import Modal from "../Ui/Modal";
-import Alert from "react-bootstrap/Alert";
+import Swal from "sweetalert2";
 import CartContext from "../store/cartcontext";
 
-const MenuCard = ({ details, restaurantName }) => {
+const MenuCard = ({ details, restaurantId, restaurantName, status }) => {
     const [showModal, setShowModal] = useState(false);
-    const [showAlertModal, setShowAlertModal] = useState(false);
 
     const aboutModal = () => {
         setShowModal(true);
@@ -30,11 +29,15 @@ const MenuCard = ({ details, restaurantName }) => {
     const validateDish = () => {
         const hasItems = cartCtx.items.length > 0;
         if (hasItems) {
-            const hasRestaurant = cartCtx.items.some(item => item.restaurant === restaurantName)
+            const hasRestaurant = cartCtx.items.some(item => item.restaurant === restaurantId)
             if (hasRestaurant) {
                 onAddToCartHandler();
             } else {
-                setShowAlertModal(true);
+                Swal.fire({
+                    title: "Aviso",
+                    text: `El restaurante del nuevo platillo no coincide con los existentes en el carrito. Solo puede tener un carrito por restaurante.`,
+                    icon: "warning"
+                });
             }
         } else {
             onAddToCartHandler();
@@ -49,7 +52,8 @@ const MenuCard = ({ details, restaurantName }) => {
             amount: 1,
             price: details.price,
             src: details.imageUrl,
-            restaurant: restaurantName,
+            restaurant: restaurantId,
+            nameRestaurant: restaurantName
         });
     };
     return (
@@ -75,17 +79,6 @@ const MenuCard = ({ details, restaurantName }) => {
                         </div>
                     </div>
                 </Modal>
-            )}
-
-            {showAlertModal && (
-                
-                    <Alert
-                        variant="warning"
-                        onClose={() => setShowAlertModal(false)}
-                        dismissible
-                    >
-                        El restaurante del nuevo platillo no coincide con los existentes en el carrito. Solo puede tener un carrito por restaurante.
-                    </Alert>
             )}
 
             <Card sx={{ width: 300, maxWidth: '100%', boxShadow: 'lg' }} style={{ marginTop: '1rem', marginBottom: '2rem' }}>
@@ -126,7 +119,7 @@ const MenuCard = ({ details, restaurantName }) => {
                             '&:hover': {
                                 backgroundColor: '#cc4526',
                             },
-                        }}>
+                        }} disabled={!status} >
                         <i className="bi bi-plus"></i> Agregar al carrito
                     </Button>
 

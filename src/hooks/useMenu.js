@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { getAllMenu } from "../services/menuService";
+import { useState, useEffect, useCallback } from "react";
+import { getAllMenu, getRestaurantById } from "../services/menuService";
 
-const useMenu = (restaurantName) => {
+const useMenu = (restaurantId) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [menu, setMenu] = useState([]);
@@ -11,21 +11,38 @@ const useMenu = (restaurantName) => {
             setLoading(true);
             setError(null);
 
-            try{
+            try {
                 let data;
-                data = await getAllMenu(restaurantName);
+                data = await getAllMenu(restaurantId);
                 setMenu(data);
-            }catch (err) {
+            } catch (err) {
                 setError(err.message);
-            }finally {
+            } finally {
                 setLoading(false);
             }
         };
         fetchMenus();
 
-    }, [restaurantName]);
+    }, [restaurantId]);
 
-    return {loading, error, menu};
+    
+
+    const getDetailsRestaurant = useCallback( async () => {
+        setLoading(true);
+        setError(null);
+    
+        try {
+          const restaurant = await getRestaurantById(restaurantId);
+          return restaurant;
+        } catch (err) {
+          setError(err.message);
+          return null;
+        } finally {
+          setLoading(false);
+        }
+      }, [restaurantId]);
+
+    return { getDetailsRestaurant, loading, error, menu };
 
 };
 

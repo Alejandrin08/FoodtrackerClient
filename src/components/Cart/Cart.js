@@ -4,12 +4,13 @@ import Modal from "../Ui/Modal";
 import TheButton from "../Ui/TheButton";
 import classes from "./Cart.module.css";
 import CartContext from "../store/cartcontext";
+//import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
   // Using useContext hooks
   const cartCtx = useContext(CartContext);
   // ENDS
-
+  //const navigate = useNavigate();
   //Converting Total amount to two decimal places
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -30,7 +31,18 @@ const Cart = (props) => {
 
   const onRemoveHandler = (id) => {
     cartCtx.removeItem(id);
+    /*if(cartCtx.items.length > 1){
+      
+      cartCtx.removeItem(id);
+    }else{
+      navigate("/");
+      
+    }*/
   };
+
+  const onClearHandler =() => {
+    cartCtx.clearCart();
+  }
 
   //ENDS
 
@@ -44,8 +56,10 @@ const Cart = (props) => {
       key={item.id}
       src={item.src}
       restaurant={item.restaurant}
+      nameRestaurant={item.nameRestaurant}
       onAdd={onAddHandler.bind(null, item)}
       onRemove={onRemoveHandler.bind(null, item.id)}
+      clearCart={onClearHandler.bind(null, null)}
     />
   ));
 

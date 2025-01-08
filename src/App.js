@@ -16,7 +16,12 @@ import Restaurants from "./components/Restaurants/Restaurants";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Menu from "./components/Menu/Menu"
 import Order from "./components/Order/Order"
+import EditRestaurant from "./components/EditRestaurant/EditRestaurant";
 import Swal from "sweetalert2";
+import RegisterRestaurant from "./components/RegisterRestaurant/RegisterRestaurant";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import RegisterMenu from "./components/RegisterMenu/RegisterMenu";
+import EditMenu from "./components/EditMenu/EditMenu"
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -60,14 +65,27 @@ const App = () => {
             <Route path="/signup/:id" element={<SignUpTwo />} />
             <Route path="/error" element={<Error />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/order" element={<Order />} />
-
             <Route
               path="/profile"
               element={
                 <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
                   <EditProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/register-menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <RegisterMenu />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <EditMenu />
                 </ProtectedRoute>
               }
             />
@@ -79,10 +97,42 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/register-restaurant"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_CLIENT"]}>
+                  <RegisterRestaurant />
+                </ProtectedRoute>
+              }
+            />            
+            <Route
+              path="/menu"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
+                  <Menu />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/order"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER", "ROLE_CLIENT"]}>
+                  <Order />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-restaurant"
+              element={
+                <ProtectedRoute requiredRole={["ROLE_OWNER"]}>
+                  <EditRestaurant />
+                </ProtectedRoute>
+              }
+            />
 
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>
-          
+
           <TheFooter />
         </Router>
       </CartProvider>
